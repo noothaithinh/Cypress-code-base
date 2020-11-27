@@ -1,0 +1,11 @@
+{
+  "plugins": [
+    ["module-resolver", {
+      "root": ["./"],
+      "alias": {
+        "@constants": "./cypress/infrastructure/constants",
+        "@data-factories": "./cypress/infrastructure/data-factories",
+      }
+    }]
+  ]
+}

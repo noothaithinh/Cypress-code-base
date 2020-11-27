@@ -1,0 +1,17 @@
+{
+  "baseUrl": "<baseUrl>",
+  "env": {
+    "apiUrl": "<apiUrl>",
+    "cookies-preserve": [ 
+      "cookies_name1",
+      "cookies_name2"
+    ],
+    "users": {
+      "admin": {
+        "email": "example@email.com",
+        "password": "password"
+      }
+    }
+  }
+}
+

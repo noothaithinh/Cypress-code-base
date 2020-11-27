@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+      "baseUrl": ".",
+      "paths": {
+        "@constants*": ["cypress/infrastructure/constants*"],
+        "@data-factories*": ["cypress/infrastructure/data-factories*"],
+      }
+    }
+  }
