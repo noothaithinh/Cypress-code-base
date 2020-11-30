@@ -2,13 +2,5 @@
   "integrationFolder": "cypress/test-suite",
   "chromeWebSecurity": false,
   "viewportWidth": 1440,
-  "viewportHeight": 789,
-  "env": {
-    "suffix": {
-      "commands": ".cmd",
-      "selectors": ".sel",
-      "constants": ".const",
-      "data-factories": ".data"
-    }
-  }
+  "viewportHeight": 789
 }

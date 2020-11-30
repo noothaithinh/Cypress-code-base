@@ -1,4 +1,5 @@
-import { url } from '@constants/login.const';
+import { url } from '@constants/login';
+
 
 export function login(currentUser) {
   // set current user

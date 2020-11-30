@@ -154,3 +154,73 @@ Cypress.Commands.add('selectSearch', { prevSubject: 'element' }, ($el, value) =>
     cy.xpath(`//*[contains(@id, "react-select-") and contains(text(), "${value}")]`).click();
   }
 })
+
+/**
+ * Select option
+ * @param { String } value  The value want to select. 
+ * @return { $Cypress }
+ * Example:
+ *  cy.getBy('awk.containerType')
+ *    .selectOption('20FR');
+ *  // select option '20FR' from awk.containerType list.
+ */
+Cypress.Commands.add('selectOption', { prevSubject: 'element' }, ($el, value) => {
+  if ($el) {
+    cy.get($el, {log: false})
+      .click()
+      .xpath(`//li[contains(., "${value}")]`)
+      .click();
+  }
+})
+
+/**
+ * Select option
+ * @param { String } value  The value want to select. 
+ * @return { $Cypress }
+ * Example:
+ *  cy.getBy('awk.containerType')
+ *    .selectOption('20FR');
+ *  // select option '20FR' from awk.containerType list.
+ */
+Cypress.Commands.add('selectDate', { prevSubject: 'element' }, ($el, value) => {
+  if ($el) {
+    const $target = Cypress.moment(value, 'MM/DD/YYYY');
+
+    // click on field
+    cy.get($el).click();
+
+    // set year
+    cy.xpath('//*[@role="dialog"]//h6').then($el => {
+      if ($el.text() != $target.year()) {
+        cy.get($el).click();
+        cy.xpath(`//*[@role="dialog"]//*[@role="button" and contains(., ${$target.year()})]`).click()
+      }
+    })
+    // set month
+    cy.xpath('//*[@role="dialog"]//p').then($el => {
+      const $current = Cypress.moment($el.text(), 'MMMM YYYY');
+      let diff = $current.diff($target.startOf('month'), 'months');
+      let fnUpdateMonth;
+
+      if (diff > 0) {
+        fnUpdateMonth = () => {
+          cy.xpath('//*[@role="dialog"]//*[@d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"]').click({force: true})
+          diff -= 1;
+        }
+      } else if(diff < 0) {
+        fnUpdateMonth = () => {
+          cy.xpath('//*[@role="dialog"]//*[@d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"]').click({force: true})
+          diff += 1;
+        }
+      }
+      while (diff !== 0) {
+        fnUpdateMonth();
+      }
+    })
+    // set date
+    cy.xpath(`//*[@role="dialog"]//button/*[text()="${$target.date()}"]`)
+      .then($el => {
+        cy.get($el.get(0)).click();
+      })
+  }
+})

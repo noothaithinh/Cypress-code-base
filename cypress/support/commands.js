@@ -67,13 +67,14 @@ Cypress.Commands.add('login', (currentUser) => {
  * Example:
  *  cy.gotoPage('/bacs/users')
  */
-Cypress.Commands.add('gotoPage', (page) => {
+Cypress.Commands.add('gotoPage', (path) => {
+  const url = Cypress.getInfrastructure('constants', path, path )
   cy.getLocalStorage("login").then(logedin => {
     logedin || cy.login();
   })
 
   cy.initWaitApi();
-  cy.visit(page);
+  cy.visit(url);
   cy.waitApi('gotoPage')
 })
 
