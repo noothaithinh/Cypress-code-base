@@ -1,8 +1,11 @@
 {
+  "reporter": "cypress-mochawesome-reporter",
+  "video": false,
   "integrationFolder": "cypress/test-suite",
   "chromeWebSecurity": false,
   "viewportWidth": 1440,
   "viewportHeight": 789,
+  "defaultCommandTimeout": 10000,
   "env": {
     "suffix": {
       "commands": ".cmd",

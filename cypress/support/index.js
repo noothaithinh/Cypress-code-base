@@ -18,6 +18,7 @@ import './cypress.init'
 import './commands'
 import './commands.ui';
 import './commands.wait';
+import 'cypress-mochawesome-reporter/register';
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
