@@ -1,4 +1,6 @@
 {
+  "video": false,
+  "reporter": "cypress-mochawesome-reporter",
   "integrationFolder": "cypress/test-suite",
   "chromeWebSecurity": false,
   "viewportWidth": 1440,
